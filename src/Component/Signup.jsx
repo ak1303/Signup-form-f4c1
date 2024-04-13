@@ -12,10 +12,8 @@ const Signup = () => {
 
     const handleEmail = (e) =>{
         let mail = e.target.value;
-        let cond1 = mail.length>3;
-        let cond2 = mail.indexOf('@')!=-1;
-        let cond3 = mail.indexOf('.')!=-1;
-        if(cond1 && cond2 && cond3){
+        const condition = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(condition.test(mail)){
             console.log("valid")
             setEmailError(false);
         }else{
@@ -55,7 +53,8 @@ const Signup = () => {
 
                 <label htmlFor="email">Email:</label>
                 <input 
-                    className={`w-full border border-slate-500 rounded-md p-1 focus:outline-blue-600" ${email ?( emailError ? 'border-red-600 outline-red-600' : 'border-2 border-green-700 outline-green-700 '):""}`}
+                    className={`${email ?( emailError ? ' border-red-600 outline-red-600' : ' border-2 border-green-600 outline-green-700 '):"border-slate-500 outline-blue-600"} 
+                    w-full border rounded-md p-1`}
                     type="email" 
                     name="email" 
                     id="email "
@@ -65,7 +64,8 @@ const Signup = () => {
 
                 <label htmlFor="password">Password:</label>
                 <input 
-                    className={`w-full border border-slate-500 rounded-md p-1 focus:outline-blue-600"  ${password ? ( passError ? 'border-red-600 outline-red-600' : `border-2 border-green-700  outline-green-700`):""} `}
+                    className={`w-full border  rounded-md p-1 
+                     ${password ? ( passError ? ' border-red-600 outline-red-600' : ` border-2 border-green-600  outline-green-700`):"border-slate-500 outline-blue-600"} `}
                     type="password" 
                     name="password"
                     id="password"
@@ -75,7 +75,8 @@ const Signup = () => {
 
                 <label htmlFor="confirm_password">Confirm Password</label>
                 <input 
-                    className={`w-full border border-slate-500 rounded-md p-1 focus:outline-blue-600"  ${confirmPassword ? (confirmError ? 'border-red-600 outline-red-600' : 'border-2 border-green-700  outline-green-700'):""}`} 
+                    className={`w-full border  rounded-md p-1 
+                    ${confirmPassword ? (confirmError ? ' border-red-600 outline-red-600' : ' border-2 border-green-600  outline-green-700'):"border-slate-500 outline-blue-600"}`} 
                     type="password" 
                     name="confirm_password"
                     id="confirm_password"
@@ -83,7 +84,7 @@ const Signup = () => {
                     onChange={confirmHandler}/>
                 {confirmError ?<div className=" text-red-700">Passwords do not match</div>:""}
 
-                <button onClick={submitHandler} className="bg-blue-700 w-28 text-white p-1 rounded-md my-1 mx-auto block transition-all hover:scale-110 hover:bg-blue-600" >SignUp</button>
+                <button onClick={submitHandler} className="bg-blue-700 w-28 text-white p-1 rounded-md my-1 mx-auto block transition-all hover:scale-110 hover:bg-blue-600 " >SignUp</button>
             </form>
         </div>
 
